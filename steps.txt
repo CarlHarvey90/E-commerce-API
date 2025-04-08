@@ -1,0 +1,43 @@
+installed venv E-Commerce_API
+activate venv - activate.bat
+installed Django insde venv
+created project inside venv
+python manage.py runserver to start webapp
+
+create an app users
+define a response in the app - views.py
+create urls.py in the app
+add the path to this app
+
+go to urls.py in the base project folder
+import include from Django.urls
+add the path to the app above
+
+create templates folder and add html file
+go to views in users app
+define template and get_temlate for base.html
+
+add app to settings.py in base project folder
+add to INSTALLED_APPS
+migrate changes - python manage.py migrate 
+
+add tables to models
+create users table
+makemigrations to add new table/changes if exists to migrations folder for final command
+python manage.py makemigrations users
+Django creates a file describing the changes and stores the file in the /migrations/ folder:
+run migrate to execute all changes in above folder
+python manage.py migrate 
+
+**for testing**
+adding some dummy info to table for next section
+python manage.py shell 
+from users.models import Users
+user = Users(firstname='Carl', lastname='Harvey')
+user.save()
+User.objects.all().values()
+output:
+<QuerySet [{'id': 1, 'firstname': 'Carl', 'lastname': 'Harvey'}]>
+https://www.w3schools.com/django/django_insert_data.php
+
+
