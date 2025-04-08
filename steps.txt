@@ -40,4 +40,19 @@ output:
 <QuerySet [{'id': 1, 'firstname': 'Carl', 'lastname': 'Harvey'}]>
 https://www.w3schools.com/django/django_insert_data.php
 
+to update a table with new fields or changes
+change the models.py file
+makemigration
+migrate
 
+**REST API**
+Component		Role
+Model			Defines your database structure
+Serializer		Translates between model <-> JSON
+View/ViewSet		Defines what actions are allowed and how
+URL/Router		Maps URLs to views
+Permissions/Auth	Controls access
+
+Define your model
+Serialize it
+Define actions in the view.
