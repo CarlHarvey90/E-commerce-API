@@ -6,7 +6,8 @@ installed Django insde venv
 created project inside venv
 python manage.py runserver to start webapp
 
-create an app users
+create an app api
+python manage.py startapp api
 define a response in the app - views.py
 create urls.py in the app
 add the path to this app
