@@ -1,6 +1,7 @@
 installed venv E-Commerce_API
 pip freeze > requirements.txt on the existing one and pip install -r requirements.txt
-**gitbash** source ./Scripts/activate 
+**gitbash** source ./Scripts/activate
+**CMD** call ./activate  
 activate venv - activate.bat
 installed Django insde venv
 created project inside venv
