@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.template import loader
+from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Users
 from .serializer import UsersSerializer
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 @api_view(['GET'])
 def get_users(request):
@@ -40,3 +43,24 @@ def user_detail(request, pk):
     if request.method == 'DELETE':
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def index(request):
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
+
+def login(request):
+    template = loader.get_template('login.html')
+    return HttpResponse(template.render())
+
+def login_request(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            return redirect("api:")
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login')
+
+def signup(request):
+    template = loader.get_template('signup.html')
+    return HttpResponse(template.render())
