@@ -7,6 +7,8 @@ from rest_framework import status
 from .models import Users
 from .serializer import UsersSerializer
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import auth
 
 @api_view(['GET'])
 def get_users(request):
@@ -48,19 +50,29 @@ def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
 
-def login(request):
-    template = loader.get_template('login.html')
-    return HttpResponse(template.render())
+#def login_view(request):
+#    return render(request, 'login.html')
 
-def login_request(request):
+
+def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            return redirect("api:")
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("welcome")
+        else:
+             # Login failed — show error
+            return render(request, 'login.html', {
+                'error': 'Invalid username or password.'
+            })  
     else:
-        form = AuthenticationForm()
-    return render(request, 'login')
+        #form = AuthenticationForm()
+        return render(request, 'login.html') 
 
 def signup(request):
-    template = loader.get_template('signup.html')
-    return HttpResponse(template.render())
+    return render(request, 'signup.html')
+
+def welcome(request):
+    return render(request, 'welcome.html')
