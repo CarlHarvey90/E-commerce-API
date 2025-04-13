@@ -68,12 +68,19 @@
 <body>
   <div class="form-container">
     <h2>Sign Up</h2>
-    <form>
-      <input type="text" placeholder="Username" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
+    {% block content%}
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+      <!-- <input type="text" placeholder="Username" required> -->
+      <!-- <input type="email" placeholder="Email" required> -->
+      <!-- <input type="password" placeholder="Password" required> -->
       <button type="submit">Sign Up</button>
     </form>
+    {% endblock %}
     <a class="back-link" href="/">← Back to Home</a>
   </div>
 </body>

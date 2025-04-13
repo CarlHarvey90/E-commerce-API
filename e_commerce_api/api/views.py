@@ -8,7 +8,9 @@ from .models import Users
 from .serializer import UsersSerializer
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import auth
+from django.contrib.auth.models import User
+from django import forms
+from .forms import SignUpForm
 
 @api_view(['GET'])
 def get_users(request):
@@ -72,7 +74,22 @@ def login_view(request):
         return render(request, 'login.html') 
 
 def signup(request):
-    return render(request, 'signup.html')
+    form = SignUpForm()
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid:
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username = username, password = password)
+            login(request, user)
+            return redirect("welcome")
+        else:
+             # Signup failed — show error
+            return render(request, 'signup.html', {
+                'error': 'Something went wrong, please try again.'
+            }) 
+    return render(request, 'signup.html', {'form':form} )
 
 def welcome(request):
     return render(request, 'welcome.html')
