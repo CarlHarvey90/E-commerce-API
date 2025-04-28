@@ -1,0 +1,31 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Products - Buy Stuff!{% endblock %}
+
+{% block content %}
+  <h1>Find the best products at amazing prices.</h1>
+
+  <div class="products">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200" alt="Product 1">
+      <h3>Product 1</h3>
+      <p>€19.99</p>
+      <button class="button" onclick="window.location.href='product.html'">View</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200" alt="Product 2">
+      <h3>Product 2</h3>
+      <p>€29.99</p>
+      <button class="button" onclick="window.location.href='product.html'">View</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200" alt="Product 3">
+      <h3>Product 3</h3>
+      <p>€39.99</p>
+      <button class="button" onclick="window.location.href='product.html'">View</button>
+    </div>
+  </div>
+{% endblock %}

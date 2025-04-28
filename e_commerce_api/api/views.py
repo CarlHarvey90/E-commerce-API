@@ -55,6 +55,9 @@ def user_detail(request, pk):
 def index(request):
     return render(request, 'index.html')
 
+def products(request):
+    return render(request, 'products.html')
+
 #def login_view(request):
 #    return render(request, 'login.html')
 
