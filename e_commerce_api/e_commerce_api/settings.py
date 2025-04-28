@@ -142,3 +142,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #CSRF_TRUSTED_ORIGINS = [
 #    'http://127.0.0.1:8000',  # or your domain
 #]
+
+# This is to store sessions in the database
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# Ensure session cookies are used and configured correctly
+SESSION_COOKIE_NAME = 'sessionid'  # Default session cookie name
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Keep session even when browser is closed
