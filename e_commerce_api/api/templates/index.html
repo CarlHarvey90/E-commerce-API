@@ -1,69 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home Page</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<!-- templates/index.html -->
+{% extends 'base.html' %}
 
-    .container {
-      text-align: center;
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
+{% block title %}Home - Buy Stuff!{% endblock %}
 
-    h1 {
-      margin-bottom: 30px;
-      color: #333;
-    }
+{% block content %}
+  <h1>Welcome to Buy Stuff!</h1>
+  <p>Find the best products at amazing prices.</p>
 
-    .button {
-      padding: 12px 24px;
-      margin: 10px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+  <div class="products">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200" alt="Product 1">
+      <h3>Product 1</h3>
+      <p>€19.99</p>
+      <button class="button" onclick="window.location.href='product.html'">View</button>
+    </div>
 
-    .login-btn {
-      background-color: #007bff;
-      color: white;
-    }
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200" alt="Product 2">
+      <h3>Product 2</h3>
+      <p>€29.99</p>
+      <button class="button" onclick="window.location.href='product.html'">View</button>
+    </div>
 
-    .login-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .signup-btn {
-      background-color: #28a745;
-      color: white;
-    }
-
-    .signup-btn:hover {
-      background-color: #1e7e34;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <h1>Buy Stuff!</h1>
-    <button class="button login-btn" onclick="window.location.href='login_view'">Login</button>
-    <button class="button signup-btn" onclick="window.location.href='signup'">Sign Up</button>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/200" alt="Product 3">
+      <h3>Product 3</h3>
+      <p>€39.99</p>
+      <button class="button" onclick="window.location.href='product.html'">View</button>
+    </div>
   </div>
-
-</body>
-</html>
+{% endblock %}
