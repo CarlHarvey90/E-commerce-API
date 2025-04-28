@@ -48,9 +48,12 @@ def user_detail(request, pk):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+#def index(request):
+    #template = loader.get_template('index.html')
+    #return HttpResponse(template.render())
+    
 def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+    return render(request, 'index.html')
 
 #def login_view(request):
 #    return render(request, 'login.html')
