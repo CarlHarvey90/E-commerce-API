@@ -60,3 +60,52 @@ Permissions/Auth	Controls access
 Define your model
 Serialize it
 Define actions in the view.
+
+
+Add Product Model in a New App
+1. Create the new app:
+
+python manage.py startapp Products
+
+2. Add the app to INSTALLED_APPS in settings.py:
+
+# settings.py
+INSTALLED_APPS = [
+    ...
+    'Products', 
+]
+
+3. Define your Product model in products/models.py:
+
+from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+class Products(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    qty = models.IntegerField(models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(9999)]
+    ), default=1)
+    in_stock = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+4. Create migrations:
+
+python manage.py makemigrations products
+
+5. Apply the migrations to create the table:
+
+python manage.py migrate
+
+6. (Optional) Register the model in the admin interface:
+
+In products/admin.py:
+
+from django.contrib import admin
+from .models import Products
+
+admin.site.register(Products)
