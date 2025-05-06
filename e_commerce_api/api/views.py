@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 #from django.template import loader
 #from django.http import HttpResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Users
 from .serializer import UsersSerializer
 #from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from rest_framework.permissions import IsAuthenticated
 #from django.contrib.auth.models import User
 #from django import forms
 from .forms import SignUpForm
@@ -20,6 +21,11 @@ def get_users(request):
         return Response(serializer.data)                                            #return data
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)                                           
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def auth_test(request):
+    return Response({'authenticated_user': request.user.username})
 
 @api_view(['POST'])
 def create_user(request):
