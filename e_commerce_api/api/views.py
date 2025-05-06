@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
-from django.template import loader
-from django.http import HttpResponse
+#from django.template import loader
+#from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Users
 from .serializer import UsersSerializer
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+#from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django import forms
+#from django.contrib.auth.models import User
+#from django import forms
 from .forms import SignUpForm
 
 @api_view(['GET'])
@@ -61,6 +61,9 @@ def products(request):
 #def login_view(request):
 #    return render(request, 'login.html')
 
+def logged_out(request):
+    logout(request)
+    return render(request, 'logged_out.html')
 
 def login_view(request):
     if request.method == 'POST':
