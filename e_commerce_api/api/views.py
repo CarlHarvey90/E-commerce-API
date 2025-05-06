@@ -14,9 +14,12 @@ from .forms import SignUpForm
 
 @api_view(['GET'])
 def get_users(request):
-    users = Users.objects.all()                                                 #Get all objects from user model
-    serializer = UsersSerializer(users, many=True)                              #serialize the data
-    return Response(serializer.data)                                            #return data
+    if request.user.is_superuser:
+        users = Users.objects.all()                                                 #Get all objects from user model
+        serializer = UsersSerializer(users, many=True)                              #serialize the data
+        return Response(serializer.data)                                            #return data
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)                                           
 
 @api_view(['POST'])
 def create_user(request):
