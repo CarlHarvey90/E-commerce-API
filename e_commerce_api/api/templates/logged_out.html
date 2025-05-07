@@ -5,6 +5,6 @@
 
 {% block content %}
   <h1>Logged out succesfully!</h1>
-  <p>Please login again to continue...</p>
+  <p>Please <a href="{% url 'login_view' %}">Login</a> again to continue...</p>
   <a class="back-link" href="/">← Back to Home</a>
 {% endblock %}

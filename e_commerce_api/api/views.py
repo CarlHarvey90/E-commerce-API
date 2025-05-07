@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Users
+from Products.models import Products
 from .serializer import UsersSerializer
 #from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -12,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 #from django.contrib.auth.models import User
 #from django import forms
 from .forms import SignUpForm
+from Cart.views import view_cart
 
 @api_view(['GET'])
 def get_users(request):
@@ -65,7 +67,15 @@ def index(request):
     return render(request, 'index.html')
 
 def products(request):
-    return render(request, 'products.html')
+    products = Products.objects.all() #get_all_products()
+    print("products")
+    print(products)
+    return render(request, 'products.html', {'products': products})
+
+def cart(request):
+    view_cart(request)
+    return render(request, 'cart.html')
+
 
 #def login_view(request):
 #    return render(request, 'login.html')

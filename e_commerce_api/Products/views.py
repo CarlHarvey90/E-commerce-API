@@ -4,10 +4,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from .models import Products
+from .utils import get_all_products
 
 @api_view(['GET'])
 def get_products(request):
-    products = Products.objects.all()
+    products = get_all_products()
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data) 
 
