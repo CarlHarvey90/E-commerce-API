@@ -133,7 +133,7 @@
   <nav>
     <a href="{% url 'index' %}">Home</a>
     <a href="{% url 'cart:products' %}">Products</a>
-    <a href="{% url 'cart' %}">Cart</a>
+    <a href="{% url 'cart:view_cart' %}">Cart</a>
     {% if user.is_authenticated %}
       <!-- Display username and logout option for authenticated users -->
       <span>{{ user.username }}</span>

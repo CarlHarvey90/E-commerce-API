@@ -72,9 +72,9 @@ def index(request):
 #     print(products)
 #     return render(request, 'products.html', {'products': products})
 
-def cart(request):
-    view_cart(request)
-    return render(request, 'cart.html')
+# def cart(request):
+#     view_cart(request)
+#     return render(request, 'cart.html')
 
 
 #def login_view(request):
