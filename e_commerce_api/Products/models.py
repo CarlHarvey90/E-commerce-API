@@ -1,6 +1,9 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+# def upload_to(instance, filename):
+#     return 'images/{filename}'.format(filename=filename)
+
 class Products(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
@@ -10,6 +13,8 @@ class Products(models.Model):
     ), default=1)
     in_stock = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='media/', null=True)
+    #models.ImageField(upload_to=upload_to, blank=True, null=True)
 
     def __str__(self):
         return self.name

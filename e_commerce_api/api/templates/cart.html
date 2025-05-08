@@ -23,13 +23,15 @@
     {% endfor %}
 
     </div>
-
+    <div class="hero">
     <p>Total Price: €{{ total_price }}</p>
 
-    <a href="{% url 'cart:products' %}">Continue Shopping</a>
+    <a class="button-index" href="{% url 'cart:products' %}">Continue Shopping</a>
 
     {% if cart_items.exists %}
-    <a href="{% url 'cart:empty_cart' %}">Empty Cart</a>
+    <a class="button-index" href="{% url 'cart:empty_cart' %}">Empty Cart</a>
+    </div>
+    
     {% endif %}
 
 </body>
