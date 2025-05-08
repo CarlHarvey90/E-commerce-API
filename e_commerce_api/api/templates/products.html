@@ -28,7 +28,7 @@
       <button class="button" onclick="window.location.href='product.html'">View</button>
     </div>
   </div>
-  <p>Products count: {{ products|length }}</p>
+  <!-- <p>Products count: {{ products|length }}</p> -->
 
   <div>
     <h1>Product Catalog</h1>
@@ -39,8 +39,8 @@
                 <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" height="150">
                 <h2>{{ product.name }}</h2>
                 <p>{{ product.description }}</p>
-                <p>Price: ${{ product.price }}</p>
-                <p>Id: {{ product.id }}</p>
+                <p>Price: €{{ product.price }}</p>
+                <!-- <p>Id: {{ product.id }}</p> -->
                 <a href="#" class="buy-now-button">Buy Now</a>
                 <a class="buy-now-button" href="{% url 'cart:add_to_cart' product.id %}">Add to Cart</a>
             </li>

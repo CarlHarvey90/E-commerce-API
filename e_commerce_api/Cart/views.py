@@ -26,3 +26,8 @@ def remove_from_cart(request, item_id):
     cart_item = CartItem.objects.get(id=item_id)
     cart_item.delete()
     return redirect('cart:view_cart')
+
+def empty_cart(request):
+    cart_item = CartItem.objects.all()
+    cart_item.delete()
+    return redirect('cart:view_cart')

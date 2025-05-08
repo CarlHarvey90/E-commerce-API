@@ -24,9 +24,13 @@
 
     </div>
 
-    <p>Total Price: ${{ total_price }}</p>
+    <p>Total Price: €{{ total_price }}</p>
 
     <a href="{% url 'cart:products' %}">Continue Shopping</a>
+
+    {% if cart_items.exists %}
+    <a href="{% url 'cart:empty_cart' %}">Empty Cart</a>
+    {% endif %}
 
 </body>
 {% endblock %}
