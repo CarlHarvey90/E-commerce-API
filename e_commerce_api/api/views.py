@@ -66,11 +66,11 @@ def user_detail(request, pk):
 def index(request):
     return render(request, 'index.html')
 
-def products(request):
-    products = Products.objects.all() #get_all_products()
-    print("products")
-    print(products)
-    return render(request, 'products.html', {'products': products})
+# def products(request):
+#     products = Products.objects.all() #get_all_products()
+#     print("products")
+#     print(products)
+#     return render(request, 'products.html', {'products': products})
 
 def cart(request):
     view_cart(request)
