@@ -4,13 +4,13 @@ from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Users
+#from .models import Users
 from Products.models import Products
 from .serializer import UsersSerializer
 #from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.permissions import IsAuthenticated
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 #from django import forms
 from .forms import SignUpForm
 from Cart.views import view_cart
@@ -18,7 +18,7 @@ from Cart.views import view_cart
 @api_view(['GET'])
 def get_users(request):
     if request.user.is_superuser:
-        users = Users.objects.all()                                                 #Get all objects from user model
+        users = User.objects.all()                                                  #Get all objects from user model
         serializer = UsersSerializer(users, many=True)                              #serialize the data
         return Response(serializer.data)                                            #return data
     else:
@@ -40,8 +40,8 @@ def create_user(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_detail(request, pk):
     try:
-        user = Users.objects.get(pk=pk)
-    except Users.DoesNotExist:
+        user = User.objects.get(pk=pk)
+    except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == 'GET':
