@@ -4,29 +4,9 @@
 {% block title %}Home - Buy Stuff!{% endblock %}
 
 {% block content %}
+<div class="hero">
   <h1>Welcome to Buy Stuff!</h1>
   <p>Find the best products at amazing prices.</p>
-
-  <div class="products">
-    <div class="product-card">
-      <img src="https://via.placeholder.com/200" alt="Product 1">
-      <h3>Product 1</h3>
-      <p>€19.99</p>
-      <button class="button" onclick="window.location.href='product.html'">View</button>
-    </div>
-
-    <div class="product-card">
-      <img src="https://via.placeholder.com/200" alt="Product 2">
-      <h3>Product 2</h3>
-      <p>€29.99</p>
-      <button class="button" onclick="window.location.href='product.html'">View</button>
-    </div>
-
-    <div class="product-card">
-      <img src="https://via.placeholder.com/200" alt="Product 3">
-      <h3>Product 3</h3>
-      <p>€39.99</p>
-      <button class="button" onclick="window.location.href='product.html'">View</button>
-    </div>
-  </div>
+  <a class="button" href="{% url 'cart:products' %}">Shop now!</a>
+</div>
 {% endblock %}
