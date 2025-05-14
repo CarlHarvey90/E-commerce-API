@@ -16,13 +16,14 @@ from .forms import SignUpForm
 from Cart.views import view_cart
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_users(request):
-    if request.user.is_superuser:
+    if request.method == 'GET':
         users = User.objects.all()                                                  #Get all objects from user model
         serializer = UsersSerializer(users, many=True)                              #serialize the data
         return Response(serializer.data)                                            #return data
     else:
-        return Response(status=status.HTTP_401_UNAUTHORIZED)                                           
+        return Response(status=status.HTTP_400_BAD_REQUEST)                                           
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -30,6 +31,7 @@ def auth_test(request):
     return Response({'authenticated_user': request.user.username})
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_user(request):
     serializer = UsersSerializer(data=request.data)                             #get data from serializer
     if serializer.is_valid():                                                   #validate the data
@@ -38,6 +40,7 @@ def create_user(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)      #return error and http response
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def user_detail(request, pk):
     try:
         user = User.objects.get(pk=pk)
