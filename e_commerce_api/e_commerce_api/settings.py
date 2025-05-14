@@ -159,4 +159,5 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 # Ensure session cookies are used and configured correctly
 SESSION_COOKIE_NAME = 'sessionid'  # Default session cookie name
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Keep session even when browser is closed
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Keep session even when browser is closed
+SESSION_COOKIE_AGE = 1800  # in seconds
